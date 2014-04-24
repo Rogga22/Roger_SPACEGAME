@@ -1,23 +1,36 @@
 class Player {
-  int playx;
-  int playy;
-  int xspeed;
-  int yspeed;
+  int x;
+  int y;
+  int speed;
   
   void Player() {
-    playx = 200;
-    playy = 450;
-    xspeed = 5;
-    yspeed = 5;
+    x = 200;
+    y = 450;
+    speed = 5;
   }
   
   void you() {
     fill(255);
-    ellipse(playx, playy, 10, 10);
+    ellipse(x, y, 10, 10);
   }
   
   void youmove() {
-    
+    if (keyPressed) {
+      if (key == CODED) {
+        if (keyCode == LEFT && x > 10) {
+          x = x - speed;
+        } 
+        if (keyCode == RIGHT && x < 390 ) {
+          x = x + speed;
+        }
+        if (keyCode == UP && y > 5) {
+          y = y - speed;
+        }
+        if (keyCode == DOWN && y < 495) {
+          y = y + speed;
+        }
+      }
+    }
   }
   
 }
