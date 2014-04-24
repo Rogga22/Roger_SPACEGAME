@@ -1,4 +1,5 @@
 Player ship;
+ArrayList<Asteroid> asts;
 
 
 //==============================SETUP=======================
@@ -9,6 +10,9 @@ void setup() {
   
   ship = new Player();
   ship.Player();
+  
+  asts = new ArrayList<Asteroid>;
+  
 }
 
 

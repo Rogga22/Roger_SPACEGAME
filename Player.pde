@@ -1,7 +1,7 @@
 class Player {
-  int x;
-  int y;
-  int speed;
+  float x;
+  float y;
+  float speed;
   
   void Player() {
     x = 200;
