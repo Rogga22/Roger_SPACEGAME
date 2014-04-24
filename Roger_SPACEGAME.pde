@@ -1,5 +1,6 @@
 Player ship;
-ArrayList<Asteroid> asts;
+int rockcount = 30;
+Asteroid[] asts = new Asteroid[rockcount];
 
 
 //==============================SETUP=======================
@@ -11,7 +12,11 @@ void setup() {
   ship = new Player();
   ship.Player();
   
-  asts = new ArrayList<Asteroid>;
+  
+  for(int i = 0; i < rockcount; i++) {
+    asts[i] =  new Asteroid();
+    asts[i].Asteroid();
+  }
   
 }
 
@@ -24,4 +29,10 @@ void draw() {
   
   ship.you();
   ship.youmove();
+  
+  for(int i = 0; i < rockcount; i++) {
+    asts[i].ahitbox();
+    asts[i].movespace();
+    asts[i].spacedrop();
+  }
 }

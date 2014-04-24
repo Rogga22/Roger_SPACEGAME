@@ -1,4 +1,4 @@
-Class Asteroid {
+class Asteroid {
   float x;
   float y;
   float xspeed;
@@ -6,13 +6,13 @@ Class Asteroid {
   
   
   void Asteroid() {
-    x = random(0, 400);
-    y = random(-50, -100);
+    x = random(40, 400);
+    y = random(-600, -50);
     xspeed = random(-5,5);
     yspeed = 5;
   }
   
-  void Ahitbox() {
+  void ahitbox() {
     fill(150);
     ellipse(x, y, 20, 20);
   }
@@ -23,7 +23,15 @@ Class Asteroid {
     if( x >= 400 || x <= 0) {
       xspeed = -xspeed;
     }
+  }
+  
+  void spacedrop() {
     y = y + yspeed;
+    if( y >= 530 ) {
+    x = random(40, 400);
+    y = random(-50, -100);
+    xspeed = random(-5,5);
+    }
   }
   
 }
