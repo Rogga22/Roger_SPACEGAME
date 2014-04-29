@@ -6,6 +6,8 @@ Asteroid[] asts = new Asteroid[rockcount];
 boolean gethit;
 int lives;
 
+boolean startthegame;
+
 PFont textstuff;
 
 
@@ -13,53 +15,42 @@ PFont textstuff;
 void setup() {
   textstuff = loadFont("BrowalliaNew-48.vlw");
   size(400, 500);
-  background(0,0,0);
-  
+  background(0, 0, 0);
+
   gethit = false;
   lives = 1;
-  
+
   ship = new Player();
   ship.Player();
-  
-  
-  for(int i = 0; i < rockcount; i++) {
+
+
+  for (int i = 0; i < rockcount; i++) {
     asts[i] =  new Asteroid();
     asts[i].Asteroid();
   }
-  
+
+  startthegame = false;
 }
 
 
 
-//==============================DRAW========================
+//==============================               DRAW        ======================================================
 void draw() {
-  background(0,0,0);
-  
-  
-  
-  ship.you();
-  ship.youmove();
-  if( lives == 1) {
-    ship.scoring();
+  background(0, 0, 0);
+
+  if (startthegame) {
+    gameOn();
+  } 
+  else {
+    amenu();
   }
-  
-  for(int i = 0; i < rockcount; i++) {
-    asts[i].ahitbox();
-    asts[i].movespace();
-    asts[i].spacedrop();
-    
-    gethit = collide( ship.x, ship.y, asts[i].x, asts[i].y);
-    if (gethit) {
-      background(255);
-      lives = lives - 1;
-    }
-  }
-  
+
+
+
   //======================Score===========================
   textFont(textstuff, 19);
   fill(255, 215, 10);
   text("Score: " + ship.score, 10, 10);
-  
 }
 
 
@@ -69,7 +60,8 @@ boolean collide( float x1, float y1, float x2, float y2 ) {
   int hitbox = 10;
   if (distance <= hitbox) {
     return true;
-  } else {
+  } 
+  else {
     return false;
   }
 }
@@ -81,13 +73,42 @@ boolean collide( float x1, float y1, float x2, float y2 ) {
 void amenu() {
   textFont(textstuff, 30);
   fill(255, 215, 10);
-  text("SPACE GAME BETA");
-  
-  if ((mouseX > 250 && mouseX < 350) && (mouseY > 250 && mouseY < 30)) {
-    fill(100);
-    rect(250, 250, 100, 30);
-  } else {
-    fill(150);
+  text("SPACE GAME BETA", 100, 100);
+  text("CLICK ANYWHERE TO BEGIN", 60, 150);
+
+  if (mousePressed == true) {
+    startthegame = true;
   }
-  
 }
+
+
+//===========================GAME STUFF======================================================================
+
+void gameOn() {
+
+  if ( lives >= 1) {
+    ship.you();
+    ship.youmove();
+    ship.scoring();
+
+    for (int i = 0; i < rockcount; i++) {
+      asts[i].ahitbox();
+      asts[i].movespace();
+      asts[i].spacedrop();
+
+      gethit = collide( ship.x, ship.y, asts[i].x, asts[i].y);
+      if (gethit) {
+        background(255);
+        lives = lives - 1;
+      }
+    }
+  } 
+  else if ( lives < 1) {
+    textFont(textstuff, 60);
+    fill(255, 215, 10);
+    text("YOU ARE DEAD", 70, 150);
+    textFont(textstuff, 25);
+    text("Your score: " + ship.score, 80, 300);
+  }
+}
+
