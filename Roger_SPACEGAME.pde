@@ -73,3 +73,21 @@ boolean collide( float x1, float y1, float x2, float y2 ) {
     return false;
   }
 }
+
+
+
+//============================START MENU=====================================================================
+
+void amenu() {
+  textFont(textstuff, 30);
+  fill(255, 215, 10);
+  text("SPACE GAME BETA");
+  
+  if ((mouseX > 250 && mouseX < 350) && (mouseY > 250 && mouseY < 30)) {
+    fill(100);
+    rect(250, 250, 100, 30);
+  } else {
+    fill(150);
+  }
+  
+}
