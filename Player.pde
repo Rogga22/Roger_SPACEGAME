@@ -47,4 +47,9 @@ class Player {
     }
   }
   
+  
+  void reset() {
+    x = 200;
+    y = 450;
+  }
 }

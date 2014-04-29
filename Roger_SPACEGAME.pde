@@ -109,6 +109,15 @@ void gameOn() {
     text("YOU ARE DEAD", 70, 150);
     textFont(textstuff, 25);
     text("Your score: " + ship.score, 80, 300);
+    
+    if (mousePressed) {
+      ship.score = 0;
+      lives = 1;
+      ship.reset();
+      for (int i = 0; i < rockcount; i++) {
+        asts[i].reset();
+      }
+    }
   }
 }
 

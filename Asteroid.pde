@@ -34,4 +34,9 @@ class Asteroid {
     }
   }
   
+  void reset() {
+    x = random(40, 400);
+    y = random(-600, -50);
+    xspeed = random(-5,5);    
+  }
 }
