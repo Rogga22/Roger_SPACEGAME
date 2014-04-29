@@ -6,7 +6,7 @@ Asteroid[] asts = new Asteroid[rockcount];
 boolean gethit;
 int lives;
 
-boolean startthegame;
+Startblock startmenu = new Startblock();
 
 PFont textstuff;
 
@@ -29,7 +29,6 @@ void setup() {
     asts[i].Asteroid();
   }
 
-  startthegame = false;
 }
 
 
@@ -38,7 +37,7 @@ void setup() {
 void draw() {
   background(0, 0, 0);
 
-  if (startthegame) {
+  if (startmenu.start) {
     gameOn();
   } 
   else {
@@ -74,11 +73,10 @@ void amenu() {
   textFont(textstuff, 30);
   fill(255, 215, 10);
   text("SPACE GAME BETA", 100, 100);
-  text("CLICK ANYWHERE TO BEGIN", 60, 150);
+  startmenu.drawstart();
+  startmenu.click();
+  
 
-  if (mousePressed == true) {
-    startthegame = true;
-  }
 }
 
 
