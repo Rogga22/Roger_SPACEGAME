@@ -2,11 +2,15 @@ class Player {
   float x;
   float y;
   float speed;
+  int score;
+  int addscore;
   
   void Player() {
     x = 200;
     y = 450;
     speed = 5;
+    score = 0;
+    addscore = 1;
   }
   
   void you() {
@@ -30,6 +34,16 @@ class Player {
           y = y + speed;
         }
       }
+    }
+  }
+  
+  void scoring() {
+    score = score + addscore;
+    if( y > 200 ) {
+      addscore = 1;
+    }
+    if( y <= 200 ) {
+      addscore = 10;
     }
   }
   
