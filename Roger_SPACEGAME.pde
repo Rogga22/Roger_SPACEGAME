@@ -1,6 +1,20 @@
+import ddf.minim.spi.*;
+import ddf.minim.signals.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.ugens.*;
+import ddf.minim.effects.*;
+
+Minim minim;
+AudioPlayer levelup;
+AudioPlayer level1;
+AudioPlayer level2;
+AudioPlayer level3;
+AudioPlayer level4;
+
 Player ship;
 
-int rockcount = 30;
+int rockcount = 40;
 Asteroid[] asts = new Asteroid[rockcount];
 
 Points collect;
@@ -17,7 +31,7 @@ PFont textstuff;
 //==============================SETUP=======================
 void setup() {
   textstuff = loadFont("BrowalliaNew-48.vlw");
-  size(400, 500);
+  size(600, 700);
   background(0, 0, 0);
 
   gethit = false;
@@ -36,6 +50,17 @@ void setup() {
   }
 
   startthegame = false;
+  
+  
+  
+  // =====Sound stuff==========
+  
+  minim = new Minim(this);
+  levelup = minim.loadFile("Transition.wav");
+  level1 = minim.loadFile("Level1.wav");
+  level2 = minim.loadFile("Level2.wav");
+  level3 = minim.loadFile("Level3.wav");
+  level4 = minim.loadFile("Level4.wav");
 }
 
 

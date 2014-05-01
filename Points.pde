@@ -4,7 +4,7 @@ class Points {
   float speed;
   
   void Points() {
-    x = random(20, 380);
+    x = random(20, 580);
     y = random(-1000, -500);
     speed = 1;
   }
@@ -22,7 +22,7 @@ class Points {
       speed = 1;
     }
     
-    if(y > 600) {
+    if(y > 900) {
       y = -1000;
       x = random(20, 380);
     }
