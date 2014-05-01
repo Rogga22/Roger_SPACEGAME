@@ -8,7 +8,7 @@ class Asteroid {
   void Asteroid() {
     x = random(40, 400);
     y = random(-600, -50);
-    xspeed = random(-5,5);
+    xspeed = random(-4,4);
     yspeed = 5;
   }
   
@@ -30,7 +30,7 @@ class Asteroid {
     if( y >= 530 ) {
     x = random(40, 400);
     y = random(-50, -100);
-    xspeed = random(-5,5);
+    xspeed = random(-4,4);
     }
   }
   

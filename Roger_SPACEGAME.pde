@@ -1,7 +1,10 @@
 Player ship;
+
 int rockcount = 30;
 Asteroid[] asts = new Asteroid[rockcount];
 
+Points collect;
+boolean item;
 
 boolean gethit;
 int lives;
@@ -22,7 +25,10 @@ void setup() {
 
   ship = new Player();
   ship.Player();
-
+  
+  collect = new Points();
+  collect.Points();
+  item = false;
 
   for (int i = 0; i < rockcount; i++) {
     asts[i] =  new Asteroid();
@@ -55,9 +61,9 @@ void draw() {
 
 
 //===========================COLLISIONS======================================================================================================
-boolean collide( float x1, float y1, float x2, float y2 ) {
+boolean collide( float x1, float y1, float x2, float y2, float r ) {
   float distance = dist(x1, y1, x2, y2);
-  int hitbox = 10;
+  float hitbox = r;
   if (distance <= hitbox) {
     return true;
   } 
@@ -90,18 +96,27 @@ void gameOn() {
     ship.you();
     ship.youmove();
     ship.scoring();
+    collect.drawpoint();
+    collect.pointdrop();
 
     for (int i = 0; i < rockcount; i++) {
       asts[i].ahitbox();
       asts[i].movespace();
       asts[i].spacedrop();
 
-      gethit = collide( ship.x, ship.y, asts[i].x, asts[i].y);
+      gethit = collide( ship.x, ship.y, asts[i].x, asts[i].y, 10);
       if (gethit) {
         background(255);
         lives = lives - 1;
       }
+      
+      item = collide( ship.x, ship.y, collect.x, collect.y, 5);
+      if (item) {
+        ship.score = ship.score + 1000;
+      }
     }
+    
+    //======================= GAME OVER===========================================================
   } 
   else if ( lives < 1) {
     textFont(textstuff, 60);
@@ -114,10 +129,13 @@ void gameOn() {
       ship.score = 0;
       lives = 1;
       ship.reset();
+      collect.reset();
       for (int i = 0; i < rockcount; i++) {
         asts[i].reset();
       }
     }
   }
+  
+  
 }
 
