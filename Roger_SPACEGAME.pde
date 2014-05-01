@@ -14,7 +14,7 @@ AudioPlayer level4;
 
 Player ship;
 
-int rockcount = 40;
+int rockcount = 45;
 Asteroid[] asts = new Asteroid[rockcount];
 
 Points collect;
@@ -135,14 +135,40 @@ void gameOn() {
         lives = lives - 1;
       }
       
-      item = collide( ship.x, ship.y, collect.x, collect.y, 5);
-      if (item) {
-        ship.score = ship.score + 1000;
-      }
+
     }
     
-    //======================= GAME OVER===========================================================
+    item = collide( ship.x, ship.y, collect.x, collect.y, 5);
+    if (item) {
+      ship.score = ship.score + 1000;
+      collect.reset();
+      }
+    
+    //===================Playing sounds==============================
+    if ( ship.score == 1) {
+      levelup.play();
+      level1.loop();
+      levelup.rewind();
+    } else if( ship.score >= 1000 && item) {
+      level1.pause();
+      levelup.play();
+      level2.loop();
+      levelup.rewind();
+    } else if (ship.score >= 10000 && item) {
+      level2.pause();
+      levelup.play();
+      level3.loop();
+      levelup.rewind();
+    } else if (ship.score == 100000 && item) {
+      level3.pause();
+      levelup.play();
+      level4.loop();
+      levelup.rewind();
+    }
+    
+    
   } 
+  //======================= GAME OVER===========================================================
   else if ( lives < 1) {
     textFont(textstuff, 60);
     fill(255, 215, 10);

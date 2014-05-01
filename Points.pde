@@ -5,7 +5,7 @@ class Points {
   
   void Points() {
     x = random(20, 580);
-    y = random(-1000, -500);
+    y = random(-500, -200);
     speed = 1;
   }
   
@@ -23,14 +23,14 @@ class Points {
     }
     
     if(y > 900) {
-      y = -1000;
+      y = -5;
       x = random(20, 380);
     }
   }
   
   void reset() {
     x = random(20, 380);
-    y = random(-1000, -500);
+    y = random(-500, -200);
   }
   
 }
