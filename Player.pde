@@ -6,8 +6,8 @@ class Player {
   int addscore;
   
   void Player() {
-    x = 200;
-    y = 450;
+    x = mouseX;
+    y = mouseY;
     speed = 5;
     score = 0;
     addscore = 1;
@@ -19,22 +19,8 @@ class Player {
   }
   
   void youmove() {
-    if (keyPressed) {
-      if (key == CODED) {
-        if (keyCode == LEFT && x > 10) {
-          x = x - speed;
-        } 
-        if (keyCode == RIGHT && x < 390 ) {
-          x = x + speed;
-        }
-        if (keyCode == UP && y > 5) {
-          y = y - speed;
-        }
-        if (keyCode == DOWN && y < 495) {
-          y = y + speed;
-        }
-      }
-    }
+    x = mouseX;
+    y = mouseY;
   }
   
   void scoring() {
@@ -49,7 +35,7 @@ class Player {
   
   
   void reset() {
-    x = 200;
-    y = 450;
+    x = mouseX;
+    y = mouseY;
   }
 }
