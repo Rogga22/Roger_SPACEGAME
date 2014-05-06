@@ -8,6 +8,7 @@ import ddf.minim.effects.*;
 Minim minim;
 AudioPlayer pointget;
 AudioPlayer music;
+AudioPlayer dead;
 
 Player ship;
 
@@ -54,7 +55,8 @@ void setup() {
   
   minim = new Minim(this);
   pointget = minim.loadFile("Transition.wav");
-  music = minim.loadFile("Music.wav");
+  music = minim.loadFile("Music.mp3");
+  dead = minim.loadFile("GameOver.mp3");
 }
 
 
@@ -149,7 +151,9 @@ void gameOn() {
     
   } 
   //======================= GAME OVER===========================================================
-  else if ( lives < 1) {
+  else if ( lives == 0) {
+    music.pause();
+    dead.play();
     textFont(textstuff, 60);
     fill(255, 215, 10);
     text("YOU ARE DEAD", 70, 150);
@@ -161,6 +165,7 @@ void gameOn() {
       lives = 1;
       ship.reset();
       collect.reset();
+      dead.pause();
       for (int i = 0; i < rockcount; i++) {
         asts[i].reset();
       }
