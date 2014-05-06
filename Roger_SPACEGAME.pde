@@ -6,11 +6,8 @@ import ddf.minim.ugens.*;
 import ddf.minim.effects.*;
 
 Minim minim;
-AudioPlayer levelup;
-AudioPlayer level1;
-AudioPlayer level2;
-AudioPlayer level3;
-AudioPlayer level4;
+AudioPlayer pointget;
+AudioPlayer music;
 
 Player ship;
 
@@ -56,11 +53,8 @@ void setup() {
   // =====Sound stuff==========
   
   minim = new Minim(this);
-  levelup = minim.loadFile("Transition.wav");
-  level1 = minim.loadFile("Level1.wav");
-  level2 = minim.loadFile("Level2.wav");
-  level3 = minim.loadFile("Level3.wav");
-  level4 = minim.loadFile("Level4.wav");
+  pointget = minim.loadFile("Transition.wav");
+  music = minim.loadFile("Music.wav");
 }
 
 
@@ -142,28 +136,14 @@ void gameOn() {
     if (item) {
       ship.score = ship.score + 1000;
       collect.reset();
+      pointget.play();
       }
     
     //===================Playing sounds==============================
     if ( ship.score == 1) {
-      levelup.play();
-      level1.loop();
-      levelup.rewind();
-    } else if( ship.score >= 1000 && item) {
-      level1.pause();
-      levelup.play();
-      level2.loop();
-      levelup.rewind();
-    } else if (ship.score >= 10000 && item) {
-      level2.pause();
-      levelup.play();
-      level3.loop();
-      levelup.rewind();
-    } else if (ship.score == 100000 && item) {
-      level3.pause();
-      levelup.play();
-      level4.loop();
-      levelup.rewind();
+      pointget.play();
+      music.loop();
+      pointget.rewind();
     }
     
     
